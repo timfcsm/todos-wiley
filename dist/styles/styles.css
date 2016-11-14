@@ -1019,6 +1019,16 @@ select {
     .filters__sort .button-group {
       display: inline-block;
       vertical-align: middle; }
+    .filters__sort .button:after {
+      content: '';
+      display: inline-block;
+      margin-left: 0.25rem;
+      border-style: solid;
+      border-width: 0 5px 7px 5px;
+      border-color: #fff transparent #fff transparent;
+      vertical-align: middle; }
+    .filters__sort .button.dsc:after {
+      border-width: 7px 5px 0 5px; }
 
 .todos {
   border: 1px solid #8a8a8a; }

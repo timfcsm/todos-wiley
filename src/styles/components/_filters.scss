@@ -17,5 +17,21 @@
       display: inline-block;
       vertical-align: middle;
     }
+
+    .button {
+      &:after {
+        content: '';
+        display: inline-block;
+        margin-left: rem-calc(4);
+        border-style: solid;
+        border-width: 0 5px 7px 5px;
+        border-color: #fff transparent #fff transparent;
+        vertical-align: middle;
+      }
+
+      &.dsc:after {
+        border-width: 7px 5px 0 5px;
+      }
+    }
   }
 }

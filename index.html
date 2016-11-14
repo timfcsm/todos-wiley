@@ -38,12 +38,18 @@
             </div>
             <div class="filters__sort">
                 Sort by:
-                <button class="button">Title</button>
-                <button class="button">Create</button>
+                <div class="button-group">
+                    <button class="button" @click="sortBy('title')"
+                            :class="[sortOrders['title'] > 0 ? 'asc' : 'dsc', {success: sortKey == 'title'}]"
+                    >Title</button>
+                    <button class="button" @click="sortBy('create')"
+                            :class="[sortOrders['create'] > 0 ? 'asc' : 'dsc', {success: sortKey == 'create'}]"
+                    >Create</button>
+                </div>
             </div>
         </div>
         <div class="todos">
-            <div class="todos__item" v-for="todo in todos">
+            <div class="todos__item" v-for="todo in todos | orderBy sortKey sortOrders[sortKey]">
                 <todo :title.sync="todo.title" :completed.sync="todo.completed" @remove="removeTodo(todo)"></todo>
             </div>
         </div>

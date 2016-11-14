@@ -10546,9 +10546,17 @@
 	  template: '#todos',
 	  data: function data() {
 	    var todos = appStorage.fetch();
+
+	    var sortOrders = {
+	      title: 1,
+	      create: -1
+	    };
+
 	    return {
 	      todos: todos,
-	      newTodo: ''
+	      sortOrders: sortOrders,
+	      newTodo: '',
+	      sortKey: 'create'
 	    };
 	  },
 
@@ -10584,6 +10592,11 @@
 	    removeTodo: function removeTodo(todo) {
 	      this.todos.$remove(todo);
 	      appStorage.save(this.todos);
+	    },
+
+	    sortBy: function sortBy(key) {
+	      this.sortKey = key;
+	      this.sortOrders[key] = this.sortOrders[key] * -1;
 	    }
 	  }
 	});

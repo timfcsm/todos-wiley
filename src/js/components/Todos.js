@@ -8,9 +8,17 @@ const Todos = Vue.extend({
   template: '#todos',
   data() {
     const todos = appStorage.fetch();
+  
+    const sortOrders = {
+      title: 1,
+      create: -1
+    };
+    
     return {
       todos,
-      newTodo: ''
+      sortOrders,
+      newTodo: '',
+      sortKey: 'create'
     }
   },
   components: {
@@ -44,6 +52,10 @@ const Todos = Vue.extend({
     removeTodo(todo) {
       this.todos.$remove(todo);
       appStorage.save(this.todos);
+    },
+    sortBy: function (key) {
+      this.sortKey = key;
+      this.sortOrders[key] = this.sortOrders[key] * -1
     }
   }
 });
