@@ -4,7 +4,10 @@ const webpack           = require('webpack'),
       ExtractTextPlugin = require('extract-text-webpack-plugin'),
       path              = require('path');
 
-module.exports = {
+const NODE_ENV      = process.env.NODE_ENV || 'development';
+const isDevelopment = NODE_ENV === 'development';
+
+const webpackConfig = {
   context: path.resolve(__dirname, './src'),
   
   entry: {
@@ -14,11 +17,11 @@ module.exports = {
   output: {
     path      : path.resolve(__dirname, './dist'),
     publicPath: '/',
-    filename  : '[name].js'
+    filename: '[name].js'
   },
-  
+  watch:   isDevelopment,
+  devtool: isDevelopment ? 'cheap-module-inline-source-map' : null,
   module: {
-    
     loaders: [{
       test   : /\.js$/,
       exclude: /(node_modules)/,
@@ -42,4 +45,17 @@ module.exports = {
     hot        : true
   }*/
 };
+
+if (!isDevelopment) {
+  webpackConfig.plugins.push(
+      new webpack.optimize.UglifyJsPlugin({
+        compress: {
+          // don't show unreachable variables etc
+          warnings: false,
+          unsafe:   true
+        }
+      }));
+};
+
+module.exports = webpackConfig;
 
