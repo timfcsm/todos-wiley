@@ -33,8 +33,10 @@
                 <div class="button-group">
                     <div class="button-group">
                         <a class="button" :class="{success: !$route.params.show}" v-link="{path: '/'}">All</a>
-                        <a class="button" :class="{success: $route.params.show == 'new'}" v-link="{path: '/new'}">New</a>
-                        <a class="button" :class="{success: $route.params.show == 'completed'}" v-link="{path: '/completed'}">Completed</a>
+                        <a class="button" :class="{success: $route.params.show === 'new'}"
+                           v-link="{path: '/new'}">New</a>
+                        <a class="button" :class="{success: $route.params.show === 'completed'}"
+                           v-link="{path: '/completed'}">Completed</a>
                     </div>
                 </div>
             </div>
@@ -50,10 +52,13 @@
                 </div>
             </div>
         </div>
-        <div class="todos">
+        <div class="todos" v-if="showedTodos.length">
             <div class="todos__item" v-for="todo in showedTodos | orderBy sortKey sortOrders[sortKey]">
                 <todo :title.sync="todo.title" :completed.sync="todo.completed" @remove="removeTodo(todo)"></todo>
             </div>
+        </div>
+        <div class="callout" v-else>
+            Nothing to show, add new task or use other filter
         </div>
         <div class="callout">
             * double click on title for edit todo
