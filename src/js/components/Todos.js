@@ -16,6 +16,14 @@ const Todos = Vue.extend({
   components: {
     'todo': Todo
   },
+  events: {
+    edit() {
+      appStorage.save(this.todos);
+    },
+    save() {
+      appStorage.save(this.todos);
+    }
+  },
   methods: {
     addTodo() {
       if (!this.newTodo) return;

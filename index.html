@@ -59,14 +59,15 @@
         <div class="todo__complete-action">
             <input type="checkbox" v-model="completed">
         </div>
-        <div class="todo__title">{{title}}</div>
+        <div class="todo__title" @dblclick="edit()">{{title}}</div>
         <div class="todo__remove">
             <button @click="$emit('remove')">
                 <span aria-hidden="true">×</span>
             </button>
         </div>
         <div class="todo__input">
-            <input type="text" class="todo__input-field">
+            <input type="text" class="todo__input-field" v-model="title"
+                   @keyup.enter="save()" @blur="save()" @keyup.esc="cancelEdit()">
         </div>
     </div>
 </template>

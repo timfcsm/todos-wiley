@@ -18,6 +18,21 @@ const Todo = Vue.extend({
     create   : {
       type: Date
     }
+  },
+  methods   : {
+    edit() {
+      this.edited      = true;
+      this.cachedTitle = this.title;
+      this.$dispatch('edit', this);
+    },
+    save() {
+      this.edited = false;
+      this.$dispatch('save', this);
+    },
+    cancelEdit() {
+      this.edited = false;
+      this.title  = this.cachedTitle;
+    }
   }
 });
 

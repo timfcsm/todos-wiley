@@ -10555,6 +10555,14 @@
 	  components: {
 	    'todo': _Todo2.default
 	  },
+	  events: {
+	    edit: function edit() {
+	      appStorage.save(this.todos);
+	    },
+	    save: function save() {
+	      appStorage.save(this.todos);
+	    }
+	  },
 	  methods: {
 	    addTodo: function addTodo() {
 	      var _this = this;
@@ -10655,6 +10663,21 @@
 	    },
 	    create: {
 	      type: Date
+	    }
+	  },
+	  methods: {
+	    edit: function edit() {
+	      this.edited = true;
+	      this.cachedTitle = this.title;
+	      this.$dispatch('edit', this);
+	    },
+	    save: function save() {
+	      this.edited = false;
+	      this.$dispatch('save', this);
+	    },
+	    cancelEdit: function cancelEdit() {
+	      this.edited = false;
+	      this.title = this.cachedTitle;
 	    }
 	  }
 	});
