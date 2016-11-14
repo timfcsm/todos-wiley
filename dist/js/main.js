@@ -10695,6 +10695,7 @@
 	  methods: {
 	    edit: function edit() {
 	      this.edited = true;
+	      // cached title will use on cancel edit
 	      this.cachedTitle = this.title;
 	      this.$dispatch('edit', this);
 	    },
@@ -10702,9 +10703,33 @@
 	      this.edited = false;
 	      this.$dispatch('save', this);
 	    },
+
+	    // cancel edit on escape, set title to old value
 	    cancelEdit: function cancelEdit() {
 	      this.edited = false;
 	      this.title = this.cachedTitle;
+	    }
+	  },
+	  directives: {
+	    'focus-onedit': function focusOnedit(value) {
+
+	      if (!value) return;
+
+	      var el = this.el,
+	          caretPos = el.value.length;
+
+	      // set carret position on focus
+	      if (el.setSelectionRange) {
+	        el.focus();
+	        el.setSelectionRange(caretPos, caretPos);
+	      } else if (el.createTextRange) {
+	        // for IE
+	        var range = el.createTextRange();
+	        range.collapse(true);
+	        range.moveEnd('character', caretPos);
+	        range.moveStart('character', caretPos);
+	        range.select();
+	      }
 	    }
 	  }
 	});

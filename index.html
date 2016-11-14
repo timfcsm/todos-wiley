@@ -77,7 +77,7 @@
             </button>
         </div>
         <div class="todo__input">
-            <input type="text" class="todo__input-field" v-model="title"
+            <input type="text" class="todo__input-field" v-model="title" v-focus-onedit="edited"
                    @keyup.enter="save()" @blur="save()" @keyup.esc="cancelEdit()">
         </div>
     </div>

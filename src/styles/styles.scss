@@ -19,4 +19,8 @@ body {
   @include grid-row();
   padding-top: rem-calc(15);
   padding-bottom: rem-calc(15);
+
+  &__header {
+    text-align: center;
+  }
 }
