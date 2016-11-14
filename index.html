@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ToDo App</title>
+</head>
+<body>
+<div id="app" class="app">
+    <div class="app__header">
+        <h1>ToDo App</h1>
+    </div>
+    <div class="new-todo">
+        <div class="new-todo__input">
+            <input type="text" class="new-todo__input-field">
+            <div class="input-group-button">
+                <button class="button new-todo__input-action">save</button>
+            </div>
+        </div>
+    </div>
+    <div class="filters">
+        <div class="filters__filter">
+            <div class="button-group">
+                <a href="/all" class="button">All</a>
+                <a href="/new" class="button">New</a>
+                <a href="/complete" class="button">Completed</a>
+            </div>
+        </div>
+        <div class="filters__sort">
+            Sort by:
+            <button class="button">Title</button>
+            <button class="button">Create</button>
+        </div>
+    </div>
+    <div class="todos">
+        <div class="todos__item">
+            <div class="todo">
+                <div class="todo__complete-action">
+                    <input type="checkbox" name="completed">
+                </div>
+                <div class="todo__body">
+                    <div class="todo__title">title</div>
+                    <div class="todo__input">
+                        <input type="text" class="todo__input-field">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,7 +1,6 @@
 'use strict';
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin'),
-      LiveReloadPlugin  = require('webpack-livereload-plugin'),
       path              = require('path');
 
 module.exports = {
@@ -34,12 +33,11 @@ module.exports = {
   },
   
   plugins: [
-    new ExtractTextPlugin('styles/styles.css'),
-    new LiveReloadPlugin(options)
+    new ExtractTextPlugin('styles/styles.css')
   ],
   
   devServer: {
-    contentBase: __dirname + '/backend',
+    contentBase: __dirname + '/',
     hot        : true
   }
 };
