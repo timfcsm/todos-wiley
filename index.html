@@ -13,58 +13,53 @@
     <div class="app__header">
         <h1>ToDo App</h1>
     </div>
-    <div class="new-todo">
-        <div class="new-todo__input">
-            <input type="text" class="new-todo__input-field">
-            <div class="input-group-button">
-                <button class="button new-todo__input-action">save</button>
-            </div>
-        </div>
-    </div>
-    <div class="filters">
-        <div class="filters__filter">
-            <div class="button-group">
-                <a href="/all" class="button">All</a>
-                <a href="/new" class="button">New</a>
-                <a href="/complete" class="button">Completed</a>
-            </div>
-        </div>
-        <div class="filters__sort">
-            Sort by:
-            <button class="button">Title</button>
-            <button class="button">Create</button>
-        </div>
-    </div>
-    <div class="todos">
-        <div class="todos__item">
-            <div class="todo">
-                <div class="todo__complete-action">
-                    <input type="checkbox" name="completed">
-                </div>
-                <div class="todo__title">title</div>
-                <div class="todo__remove">
-                    <button>
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="todo__input">
-                    <input type="text" class="todo__input-field">
-                </div>
-            </div>
-        </div>
-    </div>
+    <todos></todos>
 </div>
 
 <template id="todos">
-
+    <div>
+        <div class="new-todo">
+            <div class="new-todo__input">
+                <input type="text" class="new-todo__input-field" v-model="newTodo"
+                       placeholder="type what you need to do"
+                       @keyup.enter="addTodo()">
+                <div class="input-group-button">
+                    <button class="button new-todo__input-action" @click="addTodo()">save</button>
+                </div>
+            </div>
+        </div>
+        <div class="filters">
+            <div class="filters__filter">
+                <div class="button-group">
+                    <a href="/all" class="button">All</a>
+                    <a href="/new" class="button">New</a>
+                    <a href="/complete" class="button">Completed</a>
+                </div>
+            </div>
+            <div class="filters__sort">
+                Sort by:
+                <button class="button">Title</button>
+                <button class="button">Create</button>
+            </div>
+        </div>
+        <div class="todos">
+            <div class="todos__item" v-for="todo in todos">
+                <todo :title.sync="todo.title" :completed.sync="todo.completed"></todo>
+            </div>
+        </div>
+    </div>
 </template>
 
 <template id="todo">
-    <div class="todo">
+    <div class="todo"
+         :class="{
+        'is-completed': completed,
+        'is-edited': edited
+    }">
         <div class="todo__complete-action">
-            <input type="checkbox" name="completed">
+            <input type="checkbox" v-model="completed">
         </div>
-        <div class="todo__title">title</div>
+        <div class="todo__title">{{title}}</div>
         <div class="todo__remove">
             <button>
                 <span aria-hidden="true">×</span>

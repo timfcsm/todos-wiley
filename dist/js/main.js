@@ -59,9 +59,23 @@
 
 	var _vue2 = _interopRequireDefault(_vue);
 
+	var _Todos = __webpack_require__(8);
+
+	var _Todos2 = _interopRequireDefault(_Todos);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	new _vue2.default().$mount('#app');
+	var App = _vue2.default.extend({
+	  el: function el() {
+	    return document.getElementById('app');
+	  },
+
+	  components: {
+	    todos: _Todos2.default
+	  }
+	});
+
+	new App();
 
 /***/ },
 /* 2 */
@@ -10501,6 +10515,147 @@
 	};
 	process.umask = function() { return 0; };
 
+
+/***/ },
+/* 8 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _vue = __webpack_require__(6);
+
+	var _vue2 = _interopRequireDefault(_vue);
+
+	var _Storage = __webpack_require__(9);
+
+	var _Storage2 = _interopRequireDefault(_Storage);
+
+	var _Todo = __webpack_require__(10);
+
+	var _Todo2 = _interopRequireDefault(_Todo);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var appStorage = new _Storage2.default('TODO_STORAGE');
+
+	var Todos = _vue2.default.extend({
+	  template: '#todos',
+	  data: function data() {
+	    var todos = appStorage.fetch();
+	    return {
+	      todos: todos,
+	      newTodo: ''
+	    };
+	  },
+
+	  components: {
+	    'todo': _Todo2.default
+	  },
+	  methods: {
+	    addTodo: function addTodo() {
+	      var _this = this;
+
+	      if (!this.newTodo) return;
+
+	      this.todos.unshift({
+	        completed: false,
+	        title: this.newTodo,
+	        edited: false,
+	        create: new Date().getTime()
+	      });
+
+	      _vue2.default.nextTick(function () {
+	        _this.newTodo = '';
+	        appStorage.save(_this.todos);
+	      });
+	    }
+	  }
+	});
+
+	exports.default = Todos;
+
+/***/ },
+/* 9 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var Storage = function () {
+	  function Storage(key) {
+	    _classCallCheck(this, Storage);
+
+	    this.STORAGE_KEY = key;
+	  }
+
+	  _createClass(Storage, [{
+	    key: 'fetch',
+	    value: function fetch() {
+	      var defaultData = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '[]';
+
+	      return JSON.parse(localStorage.getItem(this.STORAGE_KEY) || defaultData);
+	    }
+	  }, {
+	    key: 'save',
+	    value: function save(val) {
+	      return localStorage.setItem(this.STORAGE_KEY, JSON.stringify(val));
+	    }
+	  }]);
+
+	  return Storage;
+	}();
+
+	exports.default = Storage;
+
+/***/ },
+/* 10 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _vue = __webpack_require__(6);
+
+	var _vue2 = _interopRequireDefault(_vue);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Todo = _vue2.default.extend({
+	  template: '#todo',
+	  props: {
+	    completed: {
+	      type: Boolean,
+	      default: false
+	    },
+	    title: {
+	      type: String,
+	      default: ''
+	    },
+	    edited: {
+	      type: Boolean,
+	      default: false
+	    },
+	    create: {
+	      type: Date
+	    }
+	  }
+	});
+
+	exports.default = Todo;
 
 /***/ }
 /******/ ]);

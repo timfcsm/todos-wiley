@@ -1,5 +1,15 @@
 import '../styles/styles.scss';
 
 import Vue from 'vue';
+import Todos from './components/Todos';
 
-new Vue().$mount('#app');
+const App = Vue.extend({
+  el() {
+    return document.getElementById('app');
+  },
+  components: {
+    todos: Todos
+  }
+});
+
+new App();

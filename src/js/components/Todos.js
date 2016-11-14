@@ -15,6 +15,24 @@ const Todos = Vue.extend({
   },
   components: {
     'todo': Todo
+  },
+  methods: {
+    addTodo() {
+      if (!this.newTodo) return;
+      
+      this.todos.unshift({
+        completed: false,
+        title: this.newTodo,
+        edited: false,
+        create: new Date().getTime()
+      });
+      
+      Vue.nextTick(() => {
+        this.newTodo = '';
+        appStorage.save(this.todos);
+      });
+      
+    }
   }
 });
 
