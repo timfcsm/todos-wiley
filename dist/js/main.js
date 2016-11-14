@@ -10572,6 +10572,10 @@
 	        _this.newTodo = '';
 	        appStorage.save(_this.todos);
 	      });
+	    },
+	    removeTodo: function removeTodo(todo) {
+	      this.todos.$remove(todo);
+	      appStorage.save(this.todos);
 	    }
 	  }
 	});

@@ -32,6 +32,10 @@ const Todos = Vue.extend({
         appStorage.save(this.todos);
       });
       
+    },
+    removeTodo(todo) {
+      this.todos.$remove(todo);
+      appStorage.save(this.todos);
     }
   }
 });

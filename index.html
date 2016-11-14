@@ -44,7 +44,7 @@
         </div>
         <div class="todos">
             <div class="todos__item" v-for="todo in todos">
-                <todo :title.sync="todo.title" :completed.sync="todo.completed"></todo>
+                <todo :title.sync="todo.title" :completed.sync="todo.completed" @remove="removeTodo(todo)"></todo>
             </div>
         </div>
     </div>
@@ -61,7 +61,7 @@
         </div>
         <div class="todo__title">{{title}}</div>
         <div class="todo__remove">
-            <button>
+            <button @click="$emit('remove')">
                 <span aria-hidden="true">×</span>
             </button>
         </div>
