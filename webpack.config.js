@@ -1,13 +1,14 @@
 'use strict';
 
-const ExtractTextPlugin = require('extract-text-webpack-plugin'),
+const webpack           = require('webpack'),
+      ExtractTextPlugin = require('extract-text-webpack-plugin'),
       path              = require('path');
 
 module.exports = {
   context: path.resolve(__dirname, './src'),
   
   entry: {
-    'js/main': ['webpack-dev-server/client', './js/main']
+    'js/main': ['./js/main']
   },
   
   output: {
@@ -36,9 +37,9 @@ module.exports = {
     new ExtractTextPlugin('styles/styles.css')
   ],
   
-  devServer: {
+ /* devServer: {
     contentBase: path.resolve(__dirname, './'),
     hot        : true
-  }
+  }*/
 };
 

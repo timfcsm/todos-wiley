@@ -1,0 +1,16 @@
+.new-todo {
+
+  &__input {
+    @extend .input-group;
+
+
+    &-field {
+      @extend .input-group-field;
+    }
+
+    &-action {
+
+    }
+
+  }
+}

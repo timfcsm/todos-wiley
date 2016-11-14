@@ -44,11 +44,18 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
+	module.exports = __webpack_require__(1);
+
+
+/***/ },
+/* 1 */
+/***/ function(module, exports, __webpack_require__) {
+
 	'use strict';
 
-	__webpack_require__(1);
+	__webpack_require__(2);
 
-	var _vue = __webpack_require__(5);
+	var _vue = __webpack_require__(6);
 
 	var _vue2 = _interopRequireDefault(_vue);
 
@@ -56,19 +63,17 @@
 
 	new _vue2.default().$mount('#app');
 
-	console.log('vue1');
-
 /***/ },
-/* 1 */
+/* 2 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 2 */,
 /* 3 */,
 /* 4 */,
-/* 5 */
+/* 5 */,
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/*!
@@ -10309,10 +10314,10 @@
 	}, 0);
 
 	module.exports = Vue;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
 
 /***/ },
-/* 6 */
+/* 7 */
 /***/ function(module, exports) {
 
 	// shim for using process in browser

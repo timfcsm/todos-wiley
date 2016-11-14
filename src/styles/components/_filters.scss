@@ -1,0 +1,21 @@
+.filters {
+  @include flex-grid-row($behavior:nest);
+  margin-bottom: rem-calc(10);
+
+  .button {
+    margin: 0;
+  }
+
+  &__filter {
+    @include flex-grid-column(6);
+  }
+  &__sort {
+    @include flex-grid-column(6);
+    text-align: right;
+
+    .button-group {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+}

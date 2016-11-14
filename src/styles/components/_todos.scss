@@ -1,0 +1,10 @@
+.todos {
+  border: 1px solid $dark-gray;
+
+  &__item {
+
+    &:not(:last-child) {
+      border-bottom: 1px solid $dark-gray;
+    }
+  }
+}

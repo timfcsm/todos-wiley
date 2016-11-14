@@ -1,0 +1,96 @@
+.todo {
+  @include flex-grid-row($behavior:nest);
+  @include flex-align($y: middle);
+  padding: rem-calc(10 0);
+  animation-duration: .2s;
+  animation-fill-mode: both;
+
+  &.is-edited {
+    padding: 0;
+  }
+
+  &.slide-in {
+    animation-name: slideInLeft;
+  }
+  &.slide-out {
+    animation-name: slideOutRight;
+  }
+
+
+  &__complete-action {
+    @include flex-grid-column(1);
+    text-align: center;
+
+    input {
+      margin: 0;
+    }
+    .todo.is-edited & {
+      display: none;
+    }
+  }
+
+  &__title {
+    @include flex-grid-column(10);
+
+    .todo.is-completed & {
+      text-decoration: line-through;
+    }
+
+    .todo.is-edited & {
+      display: none;
+    }
+  }
+
+  &__remove {
+    @include flex-grid-column(1);
+
+    .todo.is-edited & {
+      display: none;
+    }
+
+    button {
+      color: #8a8a8a;
+      right: 1rem;
+      top: 0.5rem;
+      font-size: 2em;
+      line-height: 1;
+      cursor: pointer
+    }
+  }
+
+  &__input {
+    @include flex-grid-column(12);
+    display: none;
+
+    .todo.is-edited & {
+      display: block;
+    }
+
+    input {
+      margin: 0;
+    }
+  }
+
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translate3d(-100%, 0, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    visibility: hidden;
+    transform: translate3d(100%, 0, 0);
+  }
+}
