@@ -1,15 +1,8 @@
 import '../styles/styles.scss';
 
 import Vue from 'vue';
-import Todos from './components/Todos';
+import router from './Router';
 
-const App = Vue.extend({
-  el() {
-    return document.getElementById('app');
-  },
-  components: {
-    todos: Todos
-  }
-});
+const App = Vue.extend({});
 
-new App();
+router.start(App, '#app');

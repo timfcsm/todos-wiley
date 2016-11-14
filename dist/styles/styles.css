@@ -985,6 +985,39 @@ select {
   .form-error.is-visible {
     display: block; }
 
+.callout {
+  margin: 0 0 1rem 0;
+  padding: 1rem;
+  border: 1px solid rgba(10, 10, 10, 0.25);
+  border-radius: 0;
+  position: relative;
+  color: #0a0a0a;
+  background-color: white; }
+  .callout > :first-child {
+    margin-top: 0; }
+  .callout > :last-child {
+    margin-bottom: 0; }
+  .callout.primary {
+    background-color: #def0fc; }
+  .callout.secondary {
+    background-color: #ebebeb; }
+  .callout.success {
+    background-color: #e1faea; }
+  .callout.warning {
+    background-color: #fff3d9; }
+  .callout.alert {
+    background-color: #fce6e2; }
+  .callout.small {
+    padding-top: 0.5rem;
+    padding-right: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 0.5rem; }
+  .callout.large {
+    padding-top: 3rem;
+    padding-right: 3rem;
+    padding-bottom: 3rem;
+    padding-left: 3rem; }
+
 .filters {
   margin-left: -0.625rem;
   margin-right: -0.625rem;
@@ -1034,6 +1067,24 @@ select {
   border: 1px solid #8a8a8a; }
   .todos__item:not(:last-child) {
     border-bottom: 1px solid #8a8a8a; }
+  .todos__item.slide-in {
+    animation-name: slideInLeft; }
+  .todos__item.slide-out {
+    animation-name: slideOutRight; }
+
+@keyframes slideInLeft {
+  from {
+    transform: translate3d(-100%, 0, 0);
+    visibility: visible; }
+  to {
+    transform: translate3d(0, 0, 0); } }
+
+@keyframes slideOutRight {
+  from {
+    transform: translate3d(0, 0, 0); }
+  to {
+    visibility: hidden;
+    transform: translate3d(100%, 0, 0); } }
 
 .todo {
   margin-left: -0.625rem;
@@ -1113,20 +1164,6 @@ select {
       display: block; }
     .todo__input input {
       margin: 0; }
-
-@keyframes slideInLeft {
-  from {
-    transform: translate3d(-100%, 0, 0);
-    visibility: visible; }
-  to {
-    transform: translate3d(0, 0, 0); } }
-
-@keyframes slideOutRight {
-  from {
-    transform: translate3d(0, 0, 0); }
-  to {
-    visibility: hidden;
-    transform: translate3d(100%, 0, 0); } }
 
 body {
   background-color: #f0f0f0; }

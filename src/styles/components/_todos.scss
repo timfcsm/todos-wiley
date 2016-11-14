@@ -6,5 +6,34 @@
     &:not(:last-child) {
       border-bottom: 1px solid $dark-gray;
     }
+
+    &.slide-in {
+      animation-name: slideInLeft;
+    }
+    &.slide-out {
+      animation-name: slideOutRight;
+    }
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translate3d(-100%, 0, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    visibility: hidden;
+    transform: translate3d(100%, 0, 0);
   }
 }

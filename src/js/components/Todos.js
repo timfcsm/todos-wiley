@@ -21,6 +21,25 @@ const Todos = Vue.extend({
       sortKey: 'create'
     }
   },
+  computed: {
+    showedTodos() {
+      let todos;
+    
+      switch (this.$route.params.show) {
+        case 'completed':
+          todos = this.todos.filter((todo) => todo.completed);
+          break;
+        case 'new':
+          todos = this.todos.filter((todo) => !todo.completed);
+          break;
+        default:
+          todos = this.todos;
+      }
+    
+      return todos;
+    
+    }
+  },
   components: {
     'todo': Todo
   },

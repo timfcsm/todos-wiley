@@ -13,7 +13,7 @@
     <div class="app__header">
         <h1>ToDo App</h1>
     </div>
-    <todos></todos>
+    <router-view></router-view>
 </div>
 
 <template id="todos">
@@ -31,9 +31,11 @@
         <div class="filters">
             <div class="filters__filter">
                 <div class="button-group">
-                    <a href="/all" class="button">All</a>
-                    <a href="/new" class="button">New</a>
-                    <a href="/complete" class="button">Completed</a>
+                    <div class="button-group">
+                        <a class="button" :class="{success: !$route.params.show}" v-link="{path: '/'}">All</a>
+                        <a class="button" :class="{success: $route.params.show == 'new'}" v-link="{path: '/new'}">New</a>
+                        <a class="button" :class="{success: $route.params.show == 'completed'}" v-link="{path: '/completed'}">Completed</a>
+                    </div>
                 </div>
             </div>
             <div class="filters__sort">
@@ -49,9 +51,12 @@
             </div>
         </div>
         <div class="todos">
-            <div class="todos__item" v-for="todo in todos | orderBy sortKey sortOrders[sortKey]">
+            <div class="todos__item" v-for="todo in showedTodos | orderBy sortKey sortOrders[sortKey]">
                 <todo :title.sync="todo.title" :completed.sync="todo.completed" @remove="removeTodo(todo)"></todo>
             </div>
+        </div>
+        <div class="callout">
+            * double click on title for edit todo
         </div>
     </div>
 </template>
