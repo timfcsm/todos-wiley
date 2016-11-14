@@ -35,17 +35,6 @@
 
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "/";
-/******/ 	// webpack-livereload-plugin
-/******/ 	(function() {
-/******/ 	  if (typeof window === "undefined") { return };
-/******/ 	  var id = "webpack-livereload-plugin-script";
-/******/ 	  if (document.getElementById(id)) { return; }
-/******/ 	  var el = document.createElement("script");
-/******/ 	  el.id = id;
-/******/ 	  el.async = true;
-/******/ 	  el.src = "http://localhost:8080/livereload.js";
-/******/ 	  document.getElementsByTagName("head")[0].appendChild(el);
-/******/ 	}());
 
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(0);
@@ -57,7 +46,9 @@
 
 	'use strict';
 
-	var _vue = __webpack_require__(1);
+	__webpack_require__(1);
+
+	var _vue = __webpack_require__(5);
 
 	var _vue2 = _interopRequireDefault(_vue);
 
@@ -65,8 +56,19 @@
 
 	new _vue2.default().$mount('#app');
 
+	console.log('vue1');
+
 /***/ },
 /* 1 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 2 */,
+/* 3 */,
+/* 4 */,
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/*!
@@ -10307,10 +10309,10 @@
 	}, 0);
 
 	module.exports = Vue;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ },
-/* 2 */
+/* 6 */
 /***/ function(module, exports) {
 
 	// shim for using process in browser

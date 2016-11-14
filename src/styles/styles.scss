@@ -1,0 +1,21 @@
+@import "settings";
+
+@import "../../node_modules/foundation-sites/scss/foundation";
+
+@include foundation-global-styles;
+@include foundation-typography-base;
+@include foundation-typography-helpers;
+@include foundation-button;
+@include foundation-forms;
+
+@import "components/index";
+
+body {
+  background-color: #f0f0f0;
+}
+
+.app {
+  @include grid-row();
+  padding-top: rem-calc(15);
+  padding-bottom: rem-calc(15);
+}

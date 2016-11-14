@@ -7,7 +7,7 @@ module.exports = {
   context: path.resolve(__dirname, './src'),
   
   entry: {
-    'js/main': './js/main'
+    'js/main': ['webpack-dev-server/client', './js/main']
   },
   
   output: {
@@ -37,7 +37,7 @@ module.exports = {
   ],
   
   devServer: {
-    contentBase: __dirname + '/',
+    contentBase: path.resolve(__dirname, './'),
     hot        : true
   }
 };
